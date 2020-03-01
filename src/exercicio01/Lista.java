@@ -21,6 +21,7 @@ public class Lista {
                 }
             }
             this.vetor[0] = numero;
+            this.quantidade++;
         }
     }
 }
