@@ -12,16 +12,42 @@ public class Lista {
 
     public void inserirInicio(int numero) {
         if (quantidade < 10) {
-            for (int i = this.vetor.length - 1; i >= 0; i--) {
-                try {
-                    this.vetor[i] = this.vetor[i - 1];
-                    this.vetor[i - 1] = 0;
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println(e);
-                }
-            }
+            this.andarUmIndex(0);
             this.vetor[0] = numero;
             this.quantidade++;
+        } else {
+            System.out.println("Quantidade = 10");
+        }
+    }
+
+    public void inserirFinal(int numero) {
+        if (quantidade < 10) {
+            this.vetor[quantidade] = numero;
+            this.quantidade++;
+        } else {
+            System.out.println("Quantidade = 10");
+        }
+    }
+
+    public void inserirPosicao(int numero, int posicao) {
+        if (quantidade < 10) {
+            andarUmIndex(posicao + 1);
+            this.vetor[posicao] = numero;
+            this.quantidade++;
+        } else {
+            System.out.println("Quantidade = 10");
+        }
+    }
+
+    private void andarUmIndex(int condicional) {
+        for (int i = this.vetor.length - 1; i >= condicional; i--) {
+            try {
+                int aux = this.vetor[i];
+                this.vetor[i] = this.vetor[i - 1];
+                this.vetor[i - 1] = aux;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(e);
+            }
         }
     }
 }
