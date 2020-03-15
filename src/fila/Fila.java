@@ -29,17 +29,6 @@ public class Fila {
         return this.quantidade;
     }
 
-    private void andarUmIndex() {
-        for (int i = this.lista.length - 1; i >= 0; i--) {
-            try {
-                int aux = this.lista[i];
-                this.lista[i] = this.lista[i - 1];
-                this.lista[i - 1] = aux;
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(e);
-            }
-        }
-    }
 
     private void andarUmIndexTras() {
         for (int i = 0; i < this.lista.length; i++) {
