@@ -7,25 +7,21 @@ public class Pilha {
     private int quantidade = 0;
 
     public void adicionarElemento(int numero) {
-        if(quantidade != 0 && quantidade != 0) {
-            this.andarUmIndex();
-        }
         if (quantidade < 10) {
-            this.lista[0] = numero;
+            this.lista[this.quantidade] = numero;
             this.quantidade++;
         }
     }
 
     public void removerElemento() {
         if(quantidade > 0) {
-            this.lista[0] = 0;
+            this.lista[this.quantidade - 1] = 0;
             this.quantidade--;
-            this.andarUmIndexTras();
         }
     }
 
     public int consultarElemento() {
-        return this.lista[0];
+        return this.lista[this.quantidade - 1];
     }
 
     public int consultarQuantidade() {
@@ -38,18 +34,6 @@ public class Pilha {
                 int aux = this.lista[i];
                 this.lista[i] = this.lista[i - 1];
                 this.lista[i - 1] = aux;
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(e);
-            }
-        }
-    }
-
-    private void andarUmIndexTras() {
-        for (int i = 0; i < this.lista.length; i++) {
-            try {
-                int aux = this.lista[i];
-                this.lista[i] = this.lista[i + 1];
-                this.lista[i + 1] = aux;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(e);
             }
