@@ -15,7 +15,6 @@ public class app {
                 fim = meio - 1;
             }
         }
-        long tempoFinal = System.currentTimeMillis();
         return -1;
     }
 
