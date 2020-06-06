@@ -8,6 +8,7 @@ public class PrincipalListaSE {
         no.setDado(aluno);
         lista.inserirInicio(no);
 
+
         Aluno aluno1 = new Aluno("Raiana", 2);
         No no1 = new No();
         no1.setDado(aluno1);
@@ -26,5 +27,6 @@ public class PrincipalListaSE {
 
         lista.removerFim();
         lista.removerInicio();
+        System.out.println(lista.buscarPenultimoNo().getDado().getNome());
     }
 }

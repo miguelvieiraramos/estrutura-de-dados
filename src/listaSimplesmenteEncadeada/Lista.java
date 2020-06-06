@@ -13,7 +13,11 @@ public class Lista {
     }
 
     public void inserirFim(No novoNo) {
-        buscarNoFim().setProximo(novoNo);
+        if (inicio == null) {
+            System.out.println("A lista esta vazia");
+        } else {
+            buscarNoFim().setProximo(novoNo);
+        }
     }
 
     public void inserirPosicaoEspecifica(int posicao, No novoNo) {
@@ -21,22 +25,29 @@ public class Lista {
         No noPosicaoEspecificaProximo = noPosicaoEspecifica.getProximo();
         noPosicaoEspecifica.setProximo(novoNo);
         novoNo.setProximo(noPosicaoEspecificaProximo);
-
+        noPosicaoEspecificaProximo = null;
     }
 
     public void removerInicio() {
         if (this.inicio == null) {
             System.out.println("Lista vazia");
         } else {
+            No noAux = this.inicio;
             this.inicio = this.inicio.getProximo();
+            noAux.setProximo(null);
         }
     }
 
     public void removerFim() {
-        if (this.inicio != null) {
-            No no = this.buscarNoFim();
-            no.setDado(null);
-            no.setProximo(null);
+        if (this.inicio == null) {
+            System.out.println("Lista vazia");
+        } else {
+            if (this.inicio.getProximo() == null) {
+                this.inicio = null;
+            } else {
+                No no = this.buscarPenultimoNo();
+                no.setProximo(null);
+            }
         }
     }
 
@@ -44,6 +55,7 @@ public class Lista {
         No noPosicaoEspecifica = buscarPosicaoEspecifica(posicao);
         No noPosicaoEspecificaProximoProximo = noPosicaoEspecifica.getProximo().getProximo();
         noPosicaoEspecifica.setProximo(noPosicaoEspecificaProximoProximo);
+        noPosicaoEspecificaProximoProximo = null;
     }
 
     public No buscarNoFim() {
@@ -55,6 +67,14 @@ public class Lista {
                 proximoNo = proximoNo.getProximo();
             }
         }
+    }
+
+    public No buscarPenultimoNo() {
+        No proximoNo = inicio;
+        while (proximoNo.getProximo().getProximo() != null) {
+            proximoNo = proximoNo.getProximo();
+        }
+        return proximoNo;
     }
 
     public No buscarPosicaoEspecifica(int posicao) {
