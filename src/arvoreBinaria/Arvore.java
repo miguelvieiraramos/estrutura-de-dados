@@ -63,4 +63,45 @@ public class Arvore {
         posOrdem(noAtual.getDireita());
         System.out.println(noAtual.getValor());
     }
+
+    public void removerFolha(int valor) {
+        this.removerFolha(raiz, valor);
+    }
+
+    private No removerFolha(No noAtual, int valor) {
+        if (noAtual == null) {
+            return null;
+        }
+
+        if (valor == noAtual.getValor()) {
+            if(noAtual.getEsquerda() == null && noAtual.getDireita() == null) {
+                return null;
+            }
+
+            if (noAtual.getEsquerda() == null) {
+                return noAtual.getDireita();
+            }
+
+            if (noAtual.getDireita() == null) {
+                return noAtual.getEsquerda();
+            }
+
+            No noAux = noAtual.getDireita();
+
+            while(noAux.getEsquerda() != null) {
+                noAux = noAux.getEsquerda();
+            }
+
+            noAtual.setValor(noAux.getValor());
+            noAtual.setDireita(removerFolha(noAtual.getDireita(), noAux.getValor()));
+
+        } else if (valor < noAtual.getValor()) {
+            noAtual.setEsquerda(removerFolha(noAtual.getEsquerda(), valor));
+            return noAtual;
+        } else {
+            noAtual.setDireita(removerFolha(noAtual.getDireita(), valor));
+            return noAtual;
+        }
+        return noAtual;
+    }
 }
